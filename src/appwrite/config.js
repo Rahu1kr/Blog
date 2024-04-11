@@ -8,8 +8,8 @@ export class Service{
     
     constructor(){
         this.client
-        .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
-        .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+        .setEndpoint("https://cloud.appwrite.io/v1")
+        .setProject("65cb634828243a57b48c");
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
@@ -17,8 +17,8 @@ export class Service{
     async createPost({title, slug, content, featuredimage, status, userId}){
         try {
             return await this.databases.createDocument(
-                import.meta.env.VITE_APPWRITE_DATABASE_ID,
-                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
+                "65cb676d16a1fc0d771c",
+                "65cb67b43a11df1fe0e2",
                 slug,
                 {
                     title,
@@ -36,8 +36,8 @@ export class Service{
     async updatePost(slug, {title, content, featuredimage, status}){
         try {
             return await this.databases.updateDocument(
-                import.meta.env.VITE_APPWRITE_DATABASE_ID,
-                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
+                "65cb676d16a1fc0d771c",
+                "65cb67b43a11df1fe0e2",
                 slug,
                 {
                     title,
@@ -55,8 +55,8 @@ export class Service{
     async deletePost(slug){
         try {
             await this.databases.deleteDocument(
-                import.meta.env.VITE_APPWRITE_DATABASE_ID,
-                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
+                "65cb676d16a1fc0d771c",
+                "65cb67b43a11df1fe0e2",
                 slug
             
             )
@@ -70,8 +70,8 @@ export class Service{
     async getPost(slug){
         try {
             return await this.databases.getDocument(
-                import.meta.env.VITE_APPWRITE_DATABASE_ID,
-                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
+                "65cb676d16a1fc0d771c",
+                "65cb67b43a11df1fe0e2",
                 slug
             
             )
@@ -84,8 +84,8 @@ export class Service{
     async getPosts(queries = [Query.equal("status", "active")]){
         try {
             return await this.databases.listDocuments(
-                import.meta.env.VITE_APPWRITE_DATABASE_ID,
-                import.meta.env.VITE_APPWRITE_COLLECTION_ID,
+                "65cb676d16a1fc0d771c",
+                "65cb67b43a11df1fe0e2",
                 queries,
                 
 
@@ -101,7 +101,7 @@ export class Service{
     async uploadFile(file){
         try {
             return await this.bucket.createFile(
-                import.meta.env.VITE_APPWRITE_BUCKET_ID,
+                "65cb6e033fca2e2b4d51",
                 ID.unique(),
                 file
             )
@@ -114,7 +114,7 @@ export class Service{
     async deleteFile(fileId){
         try {
             await this.bucket.deleteFile(
-                import.meta.env.VITE_APPWRITE_BUCKET_ID,
+                "65cb6e033fca2e2b4d51",
                 fileId
             )
             return true
@@ -126,7 +126,7 @@ export class Service{
 
     getFilePreview(fileId){
         return this.bucket.getFilePreview(
-            import.meta.env.VITE_APPWRITE_BUCKET_ID,
+            "65cb6e033fca2e2b4d51",
             fileId
         )
     }

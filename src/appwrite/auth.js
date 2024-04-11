@@ -8,8 +8,8 @@ export class AuthService {
 
     constructor() {
         this.client
-            .setEndpoint(import.meta.env.VITE_APPWRITE_URL)
-            .setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+            .setEndpoint("https://cloud.appwrite.io/v1")
+            .setProject("65cb634828243a57b48c");
         this.account = new Account(this.client);
             
     }
